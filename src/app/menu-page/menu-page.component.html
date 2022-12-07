@@ -1,0 +1,13 @@
+<div class="menu-page__container">
+    <app-handtracker (onPrediction)="prediction($event)"></app-handtracker>
+
+    <div [innerHTML]="gesture"></div>
+    <h1 class="menu-page__title"> Rock Paper Scissor</h1>
+    <h2 class="menu-page__main__menu"> Main Menu</h2>
+    <div class="menu-page__option__menu">
+        <button (click) ="onStartGame()" #startGame routerLinkActive="router-link-active" > Start Game </button>
+        <button (click)="openDialog()">How to play</button>
+        <button (click)="openRule()" >Rule</button>
+    </div>
+    
+</div>

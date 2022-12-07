@@ -1,3 +1,36 @@
-<app-handtracker (onPrediction)="prediction($event)"></app-handtracker>
+<div class="homepage">
+  <app-handtracker (onPrediction)="prediction($event)"></app-handtracker>
 
-<div [innerHTML]="gesture"></div>
+  <div [innerHTML]="gesture"></div>
+
+  <app-scoreboard [computerScore]="computerScore" [yourScore]="yourScore">
+  </app-scoreboard>
+  <br />
+  <h3 *ngIf="isPlaying; else elseBlock">Playing your gesture...........</h3>
+  <ng-template #elseBlock>
+    <h3>Open 2 hands to continue....</h3>
+  </ng-template>
+  <div class="item-container">
+    <app-item-picture-scissor
+      class="scissor"
+      [yourChoice]="yourChoice"
+    ></app-item-picture-scissor>
+
+    <ng-container [ngSwitch]="result">
+      <!-- the same view can be shown in more than one case -->
+      <h1 *ngSwitchCase="'You Won'" style="color: rgb(14, 206, 14)">
+        {{ result }}
+      </h1>
+      <h1 *ngSwitchCase="'Computer Won'" style="color: rgb(204, 44, 44)">
+        {{ result }}
+      </h1>
+      <h1 *ngSwitchDefault style="color: rgb(226, 198, 35)">{{ result }}</h1>
+    </ng-container>
+    <app-item-picture-rock
+      class="rock"
+      [computerChoice]="computerChoice"
+    ></app-item-picture-rock>
+    <!-- <app-item-picture-paper class="paper"></app-item-picture-paper> -->
+  </div>
+  <button class="restartBtn" (click)="restartGame()">Restart Game</button>
+</div>
